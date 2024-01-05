@@ -1,24 +1,30 @@
+import { Link, Route, Routes, useParams } from "react-router-dom";
 
-
-export default function ProductList({products, type}) {
+export default function ProductList({ products, type }) {
     return (
-        <section><h2>All {type}</h2>
-        <article className="products">
-            <ul>
-                {
-                    products.map(product => {
+        <section>
+            <h2>All {type}</h2>
+            <article className="products">
+                <ul>
+                    {products.map((product) => {
                         return (
                             <li key={product.id}>
-                                <h4>{product.name}</h4>
-                                <img src={product.image} alt={product.name} />
+                                <Link
+                                    to={`/${type.toLowerCase()}/${product.id}`}
+                                >
+                                    <h4>{product.name}</h4>
+                                    <h4>
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                        />
+                                    </h4>
+                                </Link>
                             </li>
-                        )
-                    })
-                }
-            </ul>
-
-
-        </article>
+                        );
+                    })}
+                </ul>
+            </article>
         </section>
     );
-  };
+}
